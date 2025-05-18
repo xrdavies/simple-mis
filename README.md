@@ -1,6 +1,17 @@
 # MIS - Management Information System
 
-A web-based tool for viewing and analyzing data from a SQLite database.
+A modern web-based tool for viewing and analyzing data from a SQLite database. This tool provides an intuitive interface to explore database tables, filter data, and export results.
+
+![MIS Screenshot](https://via.placeholder.com/800x450.png?text=MIS+Management+Information+System)
+
+## Features
+
+- Browse all tables in your SQLite database
+- Select specific columns to display
+- Filter data based on column values
+- Export data in CSV or JSON formats
+- Responsive design for desktop and mobile devices
+- Real-time search functionality
 
 ## Project Structure
 
@@ -15,26 +26,42 @@ The project consists of two main components:
 
 - Python 3.6 or higher
 - A SQLite database file
+- Git (for cloning the repository)
 
 ### Installation
 
 1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd mis
+   ```bash
+   git clone https://github.com/xrdavies/simple-mis.git
+   cd simple-mis
    ```
 
-2. Install backend dependencies:
+2. Create and activate a virtual environment:
+   ```bash
+   # Create a virtual environment
+   python -m venv .venv
+   
+   # Activate the virtual environment
+   # On macOS/Linux:
+   source .venv/bin/activate
+   # On Windows:
+   # .venv\Scripts\activate
    ```
+
+3. Install backend dependencies:
+   ```bash
    cd mis-backend
    pip install -r requirements.txt
    ```
 
-3. Configure the database path:
+4. Configure the database path:
    
    Set the environment variable `MIS_DB_PATH` to the path of your SQLite database file:
-   ```
+   ```bash
+   # On macOS/Linux:
    export MIS_DB_PATH=/path/to/your/database.db
+   # On Windows:
+   # set MIS_DB_PATH=C:\path\to\your\database.db
    ```
    
    Alternatively, place your SQLite database file in the `mis-backend` directory and name it `database.db`.
@@ -42,7 +69,8 @@ The project consists of two main components:
 ### Running the Application
 
 1. Start the backend server:
-   ```
+   ```bash
+   # Make sure you're in the mis-backend directory and the virtual environment is activated
    cd mis-backend
    python app.py
    ```
@@ -51,15 +79,30 @@ The project consists of two main components:
    
    Open your browser and navigate to:
    ```
-   http://localhost:5000
+   http://localhost:5001
    ```
 
-## Features
+   Note: The default port is 5001. If you want to use a different port, you can set the PORT environment variable:
+   ```bash
+   # On macOS/Linux:
+   export PORT=8080
+   # On Windows:
+   # set PORT=8080
+   ```
 
-- View all tables in the SQLite database
-- Select specific columns to display
-- Filter table data based on column values
-- Pagination for large datasets
+## Usage Guide
+
+1. **Browse Tables**: When you first open the application, you'll see a list of all tables in your SQLite database in the left sidebar.
+
+2. **View Table Data**: Click on any table name to view its data in the main panel.
+
+3. **Filter Columns**: Use the column selector at the top of the data view to choose which columns to display.
+
+4. **Filter Data**: Click the "Filter" button to open the filter modal, where you can enter values to filter the data by specific column values.
+
+5. **Export Data**: Click the "Export" button to download the current view as CSV or JSON.
+
+6. **Search Tables**: Use the search box in the sidebar to quickly find specific tables.
 
 ## API Endpoints
 
@@ -68,6 +111,23 @@ The backend provides the following API endpoints:
 - `GET /api/tables`: Get a list of all tables in the database
 - `GET /api/tables/<table_name>/columns`: Get a list of columns for a specific table
 - `GET /api/tables/<table_name>/data`: Get data from a table with optional filtering
+  - Query parameters:
+    - `columns`: Comma-separated list of columns to include
+    - `limit`: Maximum number of rows to return (default: 100)
+    - `offset`: Number of rows to skip (for pagination)
+    - Any other parameter will be treated as a filter (e.g., `?id=1` will filter rows where id=1)
+
+## Troubleshooting
+
+- **Port Already in Use**: If you see an error like "Address already in use", try changing the port as described above.
+
+- **Database Connection Issues**: Make sure your SQLite database file exists and is accessible. Check that the `MIS_DB_PATH` environment variable is set correctly.
+
+- **Missing Dependencies**: If you encounter import errors, make sure you've activated the virtual environment and installed all dependencies from requirements.txt.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
