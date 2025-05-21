@@ -25,7 +25,7 @@ The project consists of two main components:
 ### Prerequisites
 
 - Python 3.6 or higher
-- A SQLite database file
+- A SQLite database file (sample database `chinook.db` is included)
 - Git (for cloning the repository)
 
 ### Installation
@@ -55,16 +55,18 @@ The project consists of two main components:
    ```
 
 4. Configure the database path:
-   
-   Set the environment variable `MIS_DB_PATH` to the path of your SQLite database file:
-   ```bash
-   # On macOS/Linux:
-   export MIS_DB_PATH=/path/to/your/database.db
-   # On Windows:
-   # set MIS_DB_PATH=C:\path\to\your\database.db
-   ```
-   
-   Alternatively, place your SQLite database file in the `mis-backend` directory and name it `database.db`.
+    
+    Set the environment variable `MIS_DB_PATH` to the path of your SQLite database file:
+    ```bash
+    # On macOS/Linux:
+    export MIS_DB_PATH=/path/to/your/database.db
+    # On Windows:
+    # set MIS_DB_PATH=C:\path\to\your\database.db
+    ```
+    
+    Alternatively, place your SQLite database file in the `mis-backend` directory and name it `database.db`.
+    
+    **Sample Database**: The project includes a sample SQLite database file called `chinook.db` that you can use for testing. This is a commonly used sample database that contains tables for artists, albums, tracks, invoices, and more.
 
 ### Running the Application
 
@@ -116,6 +118,26 @@ The backend provides the following API endpoints:
     - `limit`: Maximum number of rows to return (default: 100)
     - `offset`: Number of rows to skip (for pagination)
     - Any other parameter will be treated as a filter (e.g., `?id=1` will filter rows where id=1)
+
+## Sample Database: Chinook
+
+The included `chinook.db` is a sample SQLite database that represents a digital media store, including tables for artists, albums, media tracks, invoices, and customers. It's perfect for testing the MIS application.
+
+Some of the main tables in the Chinook database:
+
+- `Artist`: Music artists
+- `Album`: Music albums
+- `Track`: Individual music tracks
+- `Customer`: Customer information
+- `Invoice`: Sales invoices
+- `Employee`: Employee information
+- `Genre`: Music genres
+- `Playlist`: Playlists and track listings
+
+To use the sample database, you can set:
+```bash
+export MIS_DB_PATH=/path/to/chinook.db
+```
 
 ## Troubleshooting
 
